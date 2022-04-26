@@ -12,7 +12,7 @@
     "test": "tap --ts --no-timeout --no-coverage test/*.ts",
     "clean": "shx rm -rf dist build umd; shx mkdir umd",
     "compile:ts": "tsc",
-    "compile:pack": "browserify dist/src/index.js -o umd/crypto.js -s Crypto",
+    "compile:pack": "browserify dist/src/index.js -o umd/crypto.js -s Bnc",
     "compile:pack:min": "uglifyjs umd/crypto.js --compress -o umd/crypto.min.js",
     "build": "npm run clean; npm-run-all compile:**",
     "build:watch": "nodemon -e ts,json -i dist -i build -i umd -x 'npm run compile:ts && npm run compile:pack'",
