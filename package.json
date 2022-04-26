@@ -1,0 +1,62 @@
+{
+  "name": "@browser-network/crypto",
+  "version": "0.0.0",
+  "description": "A wrapper around eccrypto designed for use in the browser-network ecosystem",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "umd/**/*"
+  ],
+  "scripts": {
+    "test": "tap --ts --no-timeout --no-coverage test/*.ts",
+    "clean": "shx rm -rf dist build umd; shx mkdir umd",
+    "compile:ts": "tsc",
+    "compile:pack": "browserify dist/src/index.js -o umd/crypto.js -s Crypto",
+    "compile:pack:min": "uglifyjs umd/crypto.js --compress -o umd/crypto.min.js",
+    "build": "npm run clean; npm-run-all compile:**",
+    "build:watch": "nodemon -e ts,json -i dist -i build -i umd -x 'npm run compile:ts && npm run compile:pack'",
+    "start:dev": "node serve.js & npm run build:watch",
+    "release": "npm run build && np --no-cleanup --no-tests --no-yarn --message=\"New release! Version: %s\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/browser-network/crypto.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Aaron Sullivan (aasullivan1618@gmail.com)",
+  "homepage": "https://github.com/browser-network/crypto#readme",
+  "keywords": [
+    "distributed",
+    "browser",
+    "network",
+    "decentralized",
+    "peer",
+    "p2p",
+    "webrtc",
+    "crypto",
+    "cryptographic"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "eccrypto": "^1.1.6"
+  },
+  "devDependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.9",
+    "@types/eccrypto": "^1.1.3",
+    "@types/node": "^16",
+    "@types/tap": "^15.0.6",
+    "browserify": "^17.0.0",
+    "nodemon": "^2.0.15",
+    "np": "^7.6.0",
+    "npm-run-all": "^4.1.5",
+    "shx": "^0.3.4",
+    "tap": "^16.0.1",
+    "tap-spec": "^5.0.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.4.4",
+    "uglify-js": "^3.15.3"
+  }
+}
