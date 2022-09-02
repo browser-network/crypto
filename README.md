@@ -7,6 +7,18 @@ convenience. If you're looking to bring cryptography into your non browser
 network application, you should probably use `eccrypto` or another cryptography
 library directly instead of using this.
 
+## Installation
+
+```sh
+npm install @browser-network/crypto
+```
+
+or
+
+```html
+<script src="//unpkg.com/@browser-network/network/umd/crypto.min.js"></script>
+```
+
 ## Usage
 
 ```ts
