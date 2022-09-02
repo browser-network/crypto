@@ -45,3 +45,6 @@ const signature = bnc.sign(secret, { some: 'object' })
 // Ensure a signature of object by a pubKey comes from that pubKey's associated secret
 const isValid = bnc.verifySignature({ some: 'object' }, signature, pubKey) // true
 ```
+
+or if you're using the UMD build via a <script></script> tag, the `window` object will
+automatically be populated with the field `Bnc` which you can use as above, eg. `Bnc.generateSecret()`.
