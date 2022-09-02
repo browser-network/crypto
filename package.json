@@ -1,6 +1,6 @@
 {
   "name": "@browser-network/crypto",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A wrapper around eccrypto designed for use in the browser-network ecosystem",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
