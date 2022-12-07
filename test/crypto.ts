@@ -1,7 +1,7 @@
 import tap from 'tap'
 import * as bnc from '../src/index'
 
-tap.test('Bnc', async (t) => {
+tap.test('signing', async (t) => {
   const privKey = bnc.generateSecret()
   const pubKey = bnc.derivePubKey(privKey)
 
@@ -26,4 +26,22 @@ tap.test('Bnc', async (t) => {
   t.ok(ver)
 
   t.end()
+})
+
+tap.test('encrypting', async (t) => {
+  const priv = bnc.generateSecret()
+  const pub = bnc.derivePubKey(priv)
+
+  const dataObj = { encrypt: 'this!' }
+  const dataStr = "encrypt this!"
+
+  const encryptedObj = await bnc.encrypt(dataObj, pub)
+  const decryptedObj = await bnc.decrypt(encryptedObj, priv)
+
+  t.equal(decryptedObj.encrypt, dataObj.encrypt)
+
+  const encryptedStr = await bnc.encrypt(dataStr, pub)
+  const decryptedStr = await bnc.decrypt(encryptedStr, priv)
+
+  t.equal(decryptedStr, dataStr)
 })
